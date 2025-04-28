@@ -24,6 +24,7 @@ let board;
 
 
 /*----- functions -----*/
+init();
 
 
 // Initialize all state, then call render()
