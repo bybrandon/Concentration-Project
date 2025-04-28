@@ -14,8 +14,9 @@ const SOURCE_CARDS = [
 const CARD_BACK = 'https://i.imgur.com/WoEmI2M.jpg'; 
 
 /*----- app's state (variables) -----*/
-
-
+let cards;
+let turn;
+let board;
 /*----- cached element references -----*/
 
 
