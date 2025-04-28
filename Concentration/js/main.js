@@ -38,7 +38,11 @@ function init() {
 };
 
  function render() {
-
+    cards.forEach(function(card, idx) {
+      const imgEl = document.getElementById(idx);
+      const source = (card.match || card === firstCard) ? card.img: CARD_BACK;
+      imgEl.source = source;
+  });
  }
 
  function getShuffledCards() {
@@ -51,15 +55,15 @@ function init() {
 
     while (tempCards.length) {
       const randomIndex = Math.floor(Math.random() * tempCards.length);
+      // this would generate a random card from the SOURCE_CARDS array
       const randomCard = tempCards.splice(randomIndex, 1)[0];
+      // splice always returns a new array of a single object, the [0] gives
+      // the one object that is returneed in the splice array
       cards.push(randomCard);
     }
     return cards;
   }
 
-        // this would generate a random card from the SOURCE_CARDS array
-       // let card = tempCards.splice(randomIdx, 1)[0];
-        // splice always returns a new array of a single object, the [0] gives
-        // the one object that is returneed in the splice array
+      
         
     
