@@ -40,8 +40,8 @@ function init() {
  function render() {
     cards.forEach(function(card, idx) {
       const imgEl = document.getElementById(idx);
-      const source = (card.match || card === firstCard) ? card.img: CARD_BACK;
-      imgEl.source = source;
+      const src = (card.matched || card === firstCard) ? card.img: CARD_BACK;
+      imgEl.src = src;
   });
  }
 
