@@ -15,8 +15,10 @@ const CARD_BACK = 'https://i.imgur.com/WoEmI2M.jpg';
 
 /*----- app's state (variables) -----*/
 let cards;
-let turn;
+// My array for the card objects(16 Total)
+let firstCard;
 let board;
+
 /*----- cached element references -----*/
 
 
@@ -28,3 +30,24 @@ init();
 
 
 // Initialize all state, then call render()
+
+function init() {
+  cards = getShuffledCards();
+};
+
+ function getShuffledCards() {
+    let tempCards = [];
+    let cards = [];
+    for (let card of SOURCE_CARDS) {
+      let randomIdx = tempCards.push(card, card);
+    }
+    while (tempCards.length) {
+      tempCards = Math.floor(Math.random() * tempCards.length);
+        // this would generate a random card from the SOURCE_CARDS array
+        let card = tempCards.splice(randomIdx, 1)[0];
+        // splice always returns a new array of a single object, the [0] give
+        // the one object that is returneed in the splice array
+        cards.push(card);
+    }
+    return cards;
+ }
