@@ -18,15 +18,17 @@ let cards;
 // My array for the card objects(16 Total)
 let selectedCard;
 let firstCard;
+let winner;
 let ignoreClicks;
 let countBad ;
 
 /*----- cached element references -----*/
 const msgEl = document.querySelector('h4');
+const moreMatchesBtn = document.getElementById('more-matches');
 
 /*----- event listeners -----*/
   document.querySelector('main').addEventListener('click', handleChoice);
-
+  moreMatchesBtn.addEventListener('click', init);
 /*----- functions -----*/
 init();
 
@@ -36,14 +38,36 @@ init();
 function init() {
   cards = getShuffledCards();
   firstCard = null;
-  secondCard = null;
+  winner = null;
   ignoreClicks = false;
   countBad = 0;
   winner = null;
   render();
 };
 
+/*
+winner: null -> game in progress;
+    true -> win (when all card objects
+           have their matched property
+           set to true - consider using
+           the reduce() or some() iterator methods)
+    false -> lost
+function handleGuess(evt) {
+ // Updating all impacting state
+
+ winner = getWinner();
+
+}
+*/
+function getWinner() {
+  return cards.all
+ 
+  
+}
+
+
  function render() {
+   // renderControls();
     cards.forEach(function(card, idx) {
       const imgEl = document.getElementById(idx);
       const src = (card.matched || card === firstCard) ? card.img: CARD_BACK;
@@ -93,4 +117,3 @@ function init() {
    };   
         
     
-bb
