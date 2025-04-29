@@ -16,14 +16,16 @@ const CARD_BACK = 'https://i.imgur.com/WoEmI2M.jpg';
 /*----- app's state (variables) -----*/
 let cards;
 // My array for the card objects(16 Total)
+let selectedCard;
 let firstCard;
-
+let ignoreClicks;
+let countBad ;
 
 /*----- cached element references -----*/
-
+const msgEl = document.querySelector('h4');
 
 /*----- event listeners -----*/
-
+  document.querySelector('main').addEventListener('click', handleChoice);
 
 /*----- functions -----*/
 init();
@@ -34,6 +36,10 @@ init();
 function init() {
   cards = getShuffledCards();
   firstCard = null;
+  secondCard = null;
+  ignoreClicks = false;
+  countBad = 0;
+  winner = null;
   render();
 };
 
@@ -42,6 +48,8 @@ function init() {
       const imgEl = document.getElementById(idx);
       const src = (card.matched || card === firstCard) ? card.img: CARD_BACK;
       imgEl.src = src;
+      // src(source) is the URL we set up in the index.html
+      msgEl.innerHTML = `No Match: ${countBad}`;
   });
  }
 
@@ -62,8 +70,26 @@ function init() {
       cards.push(randomCard);
     }
     return cards;
-  }
+  };
 
-      
+   function handleChoice(evt) {
+    const cardIdx = parseInt(evt.target.id);
+    if (isNaN(cardIdx) || ignoreClicks) return;
+    const card = cards[cardIdx];
+    if (firstCard) {
+      if (firstCard.img === card.img) {
+      // correct match, can't comapre objects anymore
+        firstCard.matched = card.matched = true;
+        // basically if the two cards selected are the same return true
+        // Unselects the first card, stops it from being selected once a match is found
+      } else {
+          countBad++
+      }
+      firstCard = null;
+    }  else {
+        firstCard = card;
+    }
+    render();
+   };   
         
     
