@@ -41,7 +41,6 @@ function init() {
   winner = null;
   ignoreClicks = false;
   countBad = 0;
-  winner = null;
   render();
 };
 
@@ -60,14 +59,17 @@ function handleGuess(evt) {
 }
 */
 function getWinner() {
-  return cards.all
- 
-  
-}
+  if (cards.every(card => card.matched)) {
+    winner = true;
+    msgEl.innerText = `🎉 Only Took You ${countBad} Tries!`;
+    ignoreClicks = true;
+    }
+  };
 
 
  function render() {
    // renderControls();
+   moreMatchesBtn.style.visibility = winner || countBad > 10 ? 'visible' : 'hidden';
     cards.forEach(function(card, idx) {
       const imgEl = document.getElementById(idx);
       const src = (card.matched || card === firstCard) ? card.img: CARD_BACK;
@@ -107,13 +109,18 @@ function getWinner() {
         // basically if the two cards selected are the same return true
         // Unselects the first card, stops it from being selected once a match is found
       } else {
-          countBad++
-      }
-      firstCard = null;
+          countBad++;
+          setTimeout(() => {
+            firstCard = null;
+            ignoreClicks = false;
+            render();
+          }, 500);
+        }
     }  else {
         firstCard = card;
     }
     render();
+    getWinner();
    };   
         
     

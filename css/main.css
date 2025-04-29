@@ -19,14 +19,24 @@ main {
   gap: 2vmin;
 }
 
+
 img {
   width: 100%;
   border-radius: 3vmin;
 }
 
+div:hover {
+  transform: scale(0.9);
+  transition: transform 150ms ease-in;
+  border-top-color: darkgrey;
+  cursor:pointer;
+}
+
 h3 {
   margin-top: 0;
 }
+
+
 
 button {
   margin: 10;
