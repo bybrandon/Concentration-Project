@@ -18,9 +18,10 @@ let cards;
 // My array for the card objects(16 Total)
 let selectedCard;
 let firstCard;
+let secondCard;
 let winner;
 let ignoreClicks;
-let countBad ;
+let countBad;
 
 /*----- cached element references -----*/
 const msgEl = document.querySelector('h4');
@@ -38,6 +39,7 @@ init();
 function init() {
   cards = getShuffledCards();
   firstCard = null;
+  secondCard = null;
   winner = null;
   ignoreClicks = false;
   countBad = 0;
@@ -72,10 +74,11 @@ function getWinner() {
    moreMatchesBtn.style.visibility = winner || countBad > 10 ? 'visible' : 'hidden';
     cards.forEach(function(card, idx) {
       const imgEl = document.getElementById(idx);
-      const src = (card.matched || card === firstCard) ? card.img: CARD_BACK;
+      const src = (card.matched || card === firstCard || card === secondCard) ? card.img: CARD_BACK;
       imgEl.src = src;
       // src(source) is the URL we set up in the index.html
       msgEl.innerHTML = `No Match: ${countBad}`;
+      getWinner();
   });
  }
 
@@ -101,26 +104,43 @@ function getWinner() {
    function handleChoice(evt) {
     const cardIdx = parseInt(evt.target.id);
     if (isNaN(cardIdx) || ignoreClicks) return;
-    const card = cards[cardIdx];
-    if (firstCard) {
-      if (firstCard.img === card.img) {
-      // correct match, can't comapre objects anymore
-        firstCard.matched = card.matched = true;
-        // basically if the two cards selected are the same return true
-        // Unselects the first card, stops it from being selected once a match is found
-      } else {
-          countBad++;
-          setTimeout(() => {
-            firstCard = null;
-            ignoreClicks = false;
-            render();
-          }, 200);
-        }
-    }  else {
-        firstCard = card;
-    }
-    render();
-    getWinner();
-   };   
-        
     
+    const card = cards[cardIdx];
+    if (!firstCard) {
+      // the ! makes the console recognize this as the first card (if no first card, make this first card)
+      firstCard = card; 
+      render(); 
+      return;
+    }
+  
+    if (card === firstCard || card.matched) return;
+  
+    secondCard = card; 
+    ignoreClicks = true; 
+    render(); 
+    
+    if (firstCard.img === secondCard.img ) {
+      
+      // if function for when the cards are matching
+    firstCard.matched = true;
+   secondCard.matched = true;
+    firstCard = null;
+    secondCard = null; 
+   ignoreClicks = false; 
+        render(); 
+      } else {
+      
+      countBad++;
+      setTimeout(() => {
+        firstCard = null;
+        secondCard =  null;
+       // secondCard.matched = false; 
+        render(); 
+        ignoreClicks = false; 
+      }, 500);
+    }
+  };
+  
+  
+  // basically if the two cards selected are the same return true
+  // Unselects the first card, stops it from being selected once a match is found
