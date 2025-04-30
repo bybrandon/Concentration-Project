@@ -2,14 +2,14 @@
 // Each of the "card" objects will be copied twice,
 // then shuffled and used for the board's cards
 const SOURCE_CARDS = [
-  {img: 'https://i.imgur.com/ZXPKaiN.jpg', matched: false},
-  {img: 'https://i.imgur.com/XMEsZBX.jpg', matched: false},
-  {img: 'https://i.imgur.com/6jX1bMT.jpg', matched: false},
-  {img: 'https://i.imgur.com/yKdqsBv.jpg', matched: false},
-  {img: 'https://i.imgur.com/1BV3HLr.jpg', matched: false},
-  {img: 'https://i.imgur.com/QYmN6Hp.jpg', matched: false},
-  {img: 'https://i.imgur.com/D5pWE05.jpg', matched: false},
-  {img: 'https://i.imgur.com/Ss4Xo3x.jpg', matched: false}
+  {img: 'https://upload.wikimedia.org/wikipedia/en/e/e2/Songs_in_the_key_of_life.jpg', matched: false},
+  {img: 'https://upload.wikimedia.org/wikipedia/en/b/b8/Bob_Marley_and_the_Wailers_-_Exodus.png', matched: false},
+  {img: 'https://i.guim.co.uk/img/static/sys-images/Guardian/Pix/pictures/2015/3/11/1426099817173/f1efb3f4-9a6d-4f78-8ca8-594ab646d198-bestSizeAvailable.jpeg?width=465&dpr=1&s=none&crop=none', matched: false},
+  {img: 'https://upload.wikimedia.org/wikipedia/en/f/f6/Off_the_wall.jpg', matched: false},
+  {img: 'https://upload.wikimedia.org/wikipedia/en/1/15/Travis_Scott_-_Rodeo.png', matched: false},
+  {img: 'https://upload.wikimedia.org/wikipedia/en/9/99/Process_-_Sampha_album.jpg', matched: false},
+  {img: 'https://upload.wikimedia.org/wikipedia/en/2/27/Ella-fitzgerald-lullabies-of-birdland.jpg', matched: false},
+  {img: 'https://upload.wikimedia.org/wikipedia/en/1/14/Jazmine_Sullivan_-_Fearless_%28album_cover%29.jpg', matched: false}
 ];
 const CARD_BACK = 'https://i.imgur.com/WoEmI2M.jpg'; 
 
@@ -114,7 +114,7 @@ function getWinner() {
             firstCard = null;
             ignoreClicks = false;
             render();
-          }, 500);
+          }, 200);
         }
     }  else {
         firstCard = card;
