@@ -4,6 +4,9 @@
 }
 
 body {
+  background-image: url("https://www.normanrecords.com/images/galleries/211/199461/0004.jpg");
+  background-size: cover;
+  background-position: center;
   height: 100vh;
   margin: 0;
   display: flex;
@@ -12,10 +15,17 @@ body {
   align-items: center;
 }
 
+
+
+h1 {
+  color: rgb(61, 3, 1);
+  font: bolder;
+}
+
 main {
   display: grid;
-  grid-template-columns: repeat(4, 15vmin);
-  grid-template-rows: repeat(4, 15vmin);
+  grid-template-columns: repeat(4, 17vmin);
+  grid-template-rows: repeat(4, 17vmin);
   gap: 2vmin;
 }
 
@@ -29,17 +39,22 @@ div:hover {
   transform: scale(0.9);
   transition: transform 150ms ease-in;
   border-top-color: darkgrey;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 h3 {
   margin-top: 0;
 }
 
-
+h4 {
+  color: rgb(61, 3, 1);
+  font: bolder;
+}
 
 button {
-  margin: 10;
+  background-color: black;
+  color: #FFFFFF;
+  margin: 0px;
   border-radius: 3vmin;
   justify-content: start;
   align-items: start;
